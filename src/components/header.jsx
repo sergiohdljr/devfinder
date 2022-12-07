@@ -1,30 +1,33 @@
 import React from "react"
 import { useState } from "react"
 import styled from "styled-components"
-import Moon from '../assets/iconMoon.svg'
-import sun from '../assets/iconSun.svg'
+import darkIcon from '../assets/iconMoon.svg'
+import lightIcon from '../assets/iconSun.svg'
 import { lightTheme, darkTheme } from "../styles/themes"
+import { useContext } from "react"
+import ThemeContext from "../context/themeContext"
 
 
 export const Header = () => {
+
+    const {theme,setTheme} = useContext(ThemeContext)
     
-    const[atualTheme,setAtualTheme] = useState(lightTheme)
     const [mudaTheme,setChangeTheme] = useState(true)
-    const [theme,setTheme] = useState('DARK')
-    const [icon,setIcon] = useState(Moon)
+    const [titleTheme,setTitleTheme] = useState('DARK')
+    const [iconTheme,setIconTheme] = useState(darkIcon)
 
     const ChangeTheme = () =>{
 
-        setAtualTheme(atualTheme===lightTheme ? darkTheme : lightTheme )
+        setTheme(theme === lightTheme ? darkTheme : lightTheme )
         setChangeTheme(!mudaTheme)
 
         if(mudaTheme){
-            setTheme('LIGHT')
-            setIcon(sun)
+            setTitleTheme('LIGHT')
+            setIconTheme(lightIcon)
         }
         else{
-            setTheme('DARK')
-            setIcon(Moon)
+            setTitleTheme('DARK')
+            setIconTheme(darkIcon)
         }
     }
 
@@ -32,7 +35,7 @@ export const Header = () => {
             <DevFinderHeader>
                 <h1>devfinder</h1>
                 <button onClick={ChangeTheme}>
-                    {theme} <i><img src={icon} alt="" /></i>
+                    {titleTheme} <i><img src={iconTheme} alt="" /></i>
                 </button>
             </DevFinderHeader>
     )
