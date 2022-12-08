@@ -12,16 +12,16 @@ export const Header = () => {
 
     const {theme,setTheme} = useContext(ThemeContext)
     
-    const [mudaTheme,setChangeTheme] = useState(true)
+    const [changeTheme,setChangeTheme] = useState(true)
     const [titleTheme,setTitleTheme] = useState('DARK')
     const [iconTheme,setIconTheme] = useState(darkIcon)
 
-    const ChangeTheme = () =>{
+    const HandleChangeTheme = () => {
 
         setTheme(theme === lightTheme ? darkTheme : lightTheme )
-        setChangeTheme(!mudaTheme)
+        setChangeTheme(!changeTheme)
 
-        if(mudaTheme){
+        if(changeTheme){
             setTitleTheme('LIGHT')
             setIconTheme(lightIcon)
         }
@@ -34,7 +34,7 @@ export const Header = () => {
     return(
             <DevFinderHeader>
                 <h1>devfinder</h1>
-                <button onClick={ChangeTheme}>
+                <button onClick={HandleChangeTheme}>
                     {titleTheme} <i><img src={iconTheme} alt="" /></i>
                 </button>
             </DevFinderHeader>

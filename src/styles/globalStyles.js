@@ -7,6 +7,7 @@ export default createGlobalStyle`
         padding:0;
         outline: 0;
         transition: 0.1s;
+        font-family: 'Space Mono', monospace;
     } 
 
     body{
