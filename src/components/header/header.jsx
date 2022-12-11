@@ -1,11 +1,11 @@
 import React from "react"
 import { useState } from "react"
-import styled from "styled-components"
-import darkIcon from '../assets/iconMoon.svg'
-import lightIcon from '../assets/iconSun.svg'
-import { lightTheme, darkTheme } from "../styles/themes"
+import darkIcon from '../../assets/iconMoon.svg'
+import lightIcon from '../../assets/iconSun.svg'
+import { lightTheme, darkTheme } from "../../styles/themes"
 import { useContext } from "react"
-import ThemeContext from "../context/themeContext"
+import ThemeContext from "../../context/themeContext"
+import { DevFinderHeader } from "./header"
 
 
 export const Header = () => {
@@ -41,27 +41,3 @@ export const Header = () => {
     )
 }
 
-const DevFinderHeader = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    
-    h1{
-        color: ${({theme}) => theme.textAlt};
-    }
-
-    button{
-        background-color: transparent;
-        color: ${({theme}) => theme.textAlt};
-        outline: none;
-        border: none;
-        font-family: 'Space Mono', monospace;
-        font-size: 1rem;
-        font-weight: 700;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        cursor: pointer;
-    }
-`
