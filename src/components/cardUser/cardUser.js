@@ -17,7 +17,6 @@ export const Card = styled.div`
     align-items: center;
     width: 100%;
     height: fit-content;
-    border: 1px blue solid;
 
     .Card__header__avatar {
       display: flex;
@@ -57,7 +56,7 @@ export const Card = styled.div`
           }
         }
         span {
-          color: ${({ theme }) => theme.textAlt};
+          color: ${({ theme }) => theme.text};
           padding-top: 1.1rem;
         }
       }
@@ -106,15 +105,24 @@ export const Card = styled.div`
 
     .Card__github__local {
       display: grid;
-      padding: 1rem;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 30% 30%;
-      gap: 0.5rem;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto;
       align-items: center;
 
       div {
         display: flex;
-        gap: 0.3rem;
+        justify-content:flex-start;
+        gap: 0.5rem;
+
+        svg{
+          fill: ${({theme})=>theme.text};
+          align-self: center;
+        }
+
+        span{
+          align-self: flex-end;
+          color:${({theme})=> theme.text};
+        }
       }
     }
   }

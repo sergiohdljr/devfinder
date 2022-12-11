@@ -1,13 +1,12 @@
-import styled from "styled-components";
-import searchIcon from "../../assets/icon-search.svg";
 import { Field, Formik } from "formik";
 import { useState } from "react";
 import { CardUser } from "../cardUser/cardUser.jsx";
-import { criacaoConta } from "../../utils/utils";
+import { criacaoConta, disponivel } from "../../utils/utils";
+import { ResearchBar } from "./search";
 
 export const SearchBar = () => {
   const github = `https://api.github.com/users/`;
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
 
   return (
     <Formik
@@ -18,12 +17,15 @@ export const SearchBar = () => {
           .then((githubUser) => setData(githubUser));
       }}
     >
-      {(props) => (
+      {({ handleSubmit, handleChange, handleReset, handleBlur }) => (
         <>
-          <ResearchBar onSubmit={props.handleSubmit}>
-            <i>
-              <img src={searchIcon} alt="" />
-            </i>
+          <ResearchBar onSubmit={handleSubmit}>
+            <svg height="24" width="25" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10.609 0c5.85 0 10.608 4.746 10.608 10.58 0 2.609-.952 5-2.527 6.847l5.112 5.087a.87.87 0 01-1.227 1.233l-5.118-5.093a10.58 10.58 0 01-6.848 2.505C4.759 21.16 0 16.413 0 10.58 0 4.747 4.76 0 10.609 0zm0 1.74c-4.891 0-8.87 3.965-8.87 8.84 0 4.874 3.979 8.84 8.87 8.84a8.855 8.855 0 006.213-2.537l.04-.047a.881.881 0 01.058-.053 8.786 8.786 0 002.558-6.203c0-4.875-3.979-8.84-8.87-8.84z"
+                fill=""
+              />
+            </svg>
             <Field
               type="text"
               name="usuario"
@@ -41,10 +43,10 @@ export const SearchBar = () => {
               repos={data.public_repos}
               followes={data.followers}
               following={data.following}
-              local={data.location}
-              twitter={data.twitter_username || "Indisponível"}
-              blog={data.blog || "Indisponível"}
-              company={data.company || "Indisponível"}
+              local={disponivel(data.location)}
+              twitter={disponivel(data.twitter_username)}
+              blog={data.blog === "" ? "indisponivel" : data.blog}
+              company={disponivel(data.company)}
             />
           )}
         </>
@@ -52,44 +54,3 @@ export const SearchBar = () => {
     </Formik>
   );
 };
-
-const ResearchBar = styled.form`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 70px;
-  background-color: ${({ theme }) => theme.contentBackground};
-  border-radius: 0.8rem;
-  padding: 0.3rem;
-  box-shadow: ${({ theme }) => theme.shadow};
-
-  input {
-    width: 70%;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    font-size: 1.2rem;
-    color: ${({ theme }) => theme.text};
-
-    ::placeholder {
-      color: ${({ theme }) => theme.text};
-    }
-  }
-
-  button {
-    width: 15%;
-    height: 90%;
-    background-color: ${({ theme }) => theme.btn};
-    border: none;
-    border-radius: 0.8rem;
-    color: ${({ theme }) => theme.contentBackground};
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-
-    :hover {
-      background-color: ${({ theme }) => theme.btnHover};
-    }
-  }
-`;

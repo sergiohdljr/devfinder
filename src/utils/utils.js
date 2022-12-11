@@ -20,3 +20,9 @@ export const criacaoConta = (dataCriacao) => {
   const anoCriacao = dataCriacao.slice(0, 4);
   return `Criada em ${diaCriacao} ${mesCriacao} ${anoCriacao}`;
 };
+
+// checar se prop é null
+
+export const disponivel = (string) =>{
+  return string ??= "Indisponível"
+}
