@@ -18,11 +18,11 @@ export const ResearchBar = styled.form`
 
   input {
     flex-grow: 1;
-    padding-left: 0.5rem;
     width: 70%;
     background-color: transparent;
     outline: none;
     border: none;
+    margin-left: 2rem;
     font-size: 1.2rem;
     color: ${({ theme }) => theme.text};
 
@@ -31,7 +31,19 @@ export const ResearchBar = styled.form`
     }
   }
 
-  button {
+  .Clear_input{
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: red;
+    width: 24px;
+    height: 80%;
+    margin-right: 0.5rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .Submit_input {
     width: 15%;
     height: 90%;
     background-color: ${({ theme }) => theme.btn};

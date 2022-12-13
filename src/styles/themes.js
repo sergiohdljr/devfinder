@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 export const lightTheme = {
   background: "#f6f8ff",
   contentBackground: "#fefefe",

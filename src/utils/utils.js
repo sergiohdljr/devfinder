@@ -22,7 +22,6 @@ export const criacaoConta = (dataCriacao) => {
 };
 
 // checar se prop é null
-
 export const disponivel = (string) =>{
   return string ??= "Indisponível"
 }
