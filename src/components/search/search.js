@@ -31,7 +31,7 @@ export const ResearchBar = styled.form`
     }
   }
 
-  .Clear_input{
+  .Clear_input {
     background-color: transparent;
     font-size: 1.2rem;
     color: red;
@@ -58,4 +58,15 @@ export const ResearchBar = styled.form`
       background-color: ${({ theme }) => theme.btnHover};
     }
   }
+    @media screen and (max-width: 768px) {
+      input{
+        ::placeholder{
+          font-size:0.9rem;
+        }
+      }
+
+    .Submit_input{
+        width: 20%;
+      }
+    }
 `;

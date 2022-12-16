@@ -5,40 +5,44 @@ export const Card = styled.div`
   grid-template-rows: auto auto;
   gap: 1rem;
   width: 100%;
-  height: 510px;
+  height: auto;
+  min-height: 510px;
   background-color: ${({ theme }) => theme.contentBackground};
   box-shadow: ${({ theme }) => theme.shadow};
   border-radius: 0.8rem;
   padding: 1rem;
 
   .Card__header {
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    grid-template-rows: auto;
+    gap: 0.5rem;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: fit-content;
 
     .Card__header__avatar {
+      justify-self: center;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 43%;
-      height: 100%;
+      grid-row-start: 1;
+      grid-row-end: 3;
 
       .Card__header__avatar_pic {
-        width: 170px;
-        height: 170px;
+        width: 150px;
+        height: 150px;
         border-radius: 50%;
       }
     }
     .Card__header__info {
-      display: grid;
-      grid-template-columns: 100%;
-      grid-template-rows: auto auto;
       width: 100%;
-      min-height: 180px;
+      height: auto;
+      align-self: flex-start;
 
       .Card__header_info_text {
+        width: 100%;
         min-height: 90px;
         display: flex;
         justify-content: space-between;
@@ -60,19 +64,16 @@ export const Card = styled.div`
           padding-top: 1.1rem;
         }
       }
+    }
+    .Card__header_info_bio {
+      flex-grow: 1;
+      grid-column: 2;
 
-      .Card__header_info_bio {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-
-        span {
-          color: ${({ theme }) => theme.textAlt};
-        }
+      span {
+        color: ${({ theme }) => theme.textAlt};
       }
     }
   }
-
   .Card__github {
     justify-self: end;
     width: 70%;
@@ -105,23 +106,84 @@ export const Card = styled.div`
 
     .Card__github__local {
       display: grid;
-      grid-template-columns: auto auto;
-      grid-template-rows: auto auto;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
       align-items: center;
 
       div {
         display: flex;
-        justify-content:flex-start;
+        justify-content: flex-start;
         gap: 0.5rem;
 
-        svg{
-          fill: ${({theme})=>theme.text};
+        svg {
+          fill: ${({ theme }) => theme.text};
           align-self: center;
         }
 
-        span{
+        span {
+          padding: 0.3rem;
+          font-size:0.8rem ;
           align-self: flex-end;
-          color:${({theme})=> theme.text};
+          color: ${({ theme }) => theme.text};
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .Card__header {
+      grid-template-columns: 30% 1fr;
+      gap: 0.5rem;
+
+      .Card__header__info {
+        .Card__header_info_text {
+          .info {
+            flex-grow: 0;
+            width: auto;
+
+            h1 {
+              font-size: 2rem;
+            }
+
+            p {
+            }
+          }
+          span {
+            flex-grow: 1;
+            padding-top: 0.8rem;
+            font-size: 0.8rem;
+            text-align: center;
+          }
+        }
+      }
+
+      .Card__header__avatar {
+        grid-row-start: 1;
+        grid-row-end: 2;
+      }
+      .Card__header_info_bio {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    }
+
+    .Card__github {
+      width: 100%;
+
+      .Card__github__info {
+      }
+
+      .Card__github__local {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        div {
+          padding: 0.3rem;
+          gap: 0.5rem;
+          span {
+            text-align: start;
+            align-self: flex-end;
+            font-size: 0.8rem;
+            color: ${({ theme }) => theme.text};
+          }
         }
       }
     }

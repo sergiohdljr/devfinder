@@ -28,9 +28,9 @@ export const CardUser = ({
             </div>
             <span>{criacao}</span>
           </div>
-          <div className="Card__header_info_bio">
-            <span>{bio}</span>
-          </div>
+        </div>
+        <div className="Card__header_info_bio">
+          <span>{bio}</span>
         </div>
       </div>
       <div className="Card__github">
