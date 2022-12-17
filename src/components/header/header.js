@@ -4,6 +4,7 @@ export const DevFinderHeader = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  
 
   h1 {
     color: ${({ theme }) => theme.textAlt};
@@ -23,5 +24,13 @@ export const DevFinderHeader = styled.div`
     align-items: center;
     gap: 1rem;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 568px){
+    button{
+      padding-top: 0.5rem;
+      font-size: 0.8rem;
+      gap: 0.4rem;
+    }
   }
 `;

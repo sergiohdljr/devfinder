@@ -35,7 +35,7 @@ export const SearchBar = () => {
             <Field
               type="text"
               name="usuario"
-              placeholder="Pesquise o nome de usuário do Github..."
+              placeholder="Busque o seu github user"
             />
             {inputChange && (
               <button

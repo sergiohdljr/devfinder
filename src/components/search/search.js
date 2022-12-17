@@ -58,15 +58,38 @@ export const ResearchBar = styled.form`
       background-color: ${({ theme }) => theme.btnHover};
     }
   }
-    @media screen and (max-width: 768px) {
-      input{
-        ::placeholder{
-          font-size:0.9rem;
-        }
-      }
-
-    .Submit_input{
-        width: 20%;
+  @media screen and (max-width: 768px) {
+    input {
+      ::placeholder {
+        font-size: 0.9rem;
       }
     }
+
+    .Submit_input {
+      width: 20%;
+    }
+  }
+  @media screen and (max-width: 568px) {
+    svg {
+      margin-left: 0;
+    }
+    input {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+
+      ::placeholder {
+        font-size: 0.7rem;
+      }
+    }
+
+    .Clear_input {
+      margin-right: 0;
+    }
+
+    .Submit_input {
+      width: 25%;
+      font-size: 0.8rem;
+      padding: 0.2rem;
+    }
+  }
 `;

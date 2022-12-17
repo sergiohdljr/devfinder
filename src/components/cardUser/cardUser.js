@@ -3,20 +3,20 @@ import styled from "styled-components";
 export const Card = styled.div`
   display: grid;
   grid-template-rows: auto auto;
-  gap: 1rem;
+  gap: 0.8rem;
   width: 100%;
   height: auto;
   min-height: 510px;
   background-color: ${({ theme }) => theme.contentBackground};
   box-shadow: ${({ theme }) => theme.shadow};
   border-radius: 0.8rem;
-  padding: 1rem;
+  padding: 2rem;
 
   .Card__header {
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: auto;
-    gap: 0.5rem;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -31,8 +31,8 @@ export const Card = styled.div`
       grid-row-end: 3;
 
       .Card__header__avatar_pic {
-        width: 150px;
-        height: 150px;
+        width: 117px;
+        height: 117px;
         border-radius: 50%;
       }
     }
@@ -52,16 +52,19 @@ export const Card = styled.div`
           flex-grow: 1;
 
           h1 {
+            font-size: 26px;
             color: ${({ theme }) => theme.textAlt};
           }
 
           p {
+            font-size: 1rem;
             color: ${({ theme }) => theme.btn};
           }
         }
         span {
+          font-size: 1rem;
           color: ${({ theme }) => theme.text};
-          padding-top: 1.1rem;
+          padding-top: 0.8rem;
         }
       }
     }
@@ -76,7 +79,7 @@ export const Card = styled.div`
   }
   .Card__github {
     justify-self: end;
-    width: 70%;
+    width: 516px;
     min-height: 240px;
     display: grid;
     grid-template-columns: 100%;
@@ -86,21 +89,23 @@ export const Card = styled.div`
     .Card__github__info {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 2fr;
-      padding: 1rem;
+      grid-template-rows: 1fr;
+      padding: 2rem;
       border-radius: 0.8rem;
       background-color: ${({ theme }) => theme.background};
 
-      span {
-        text-align: center;
-        color: ${({ theme }) => theme.textAlt};
-        font-size: 1.2rem;
-      }
+      .info__data {
+        span {
+          text-align: start;
+          color: ${({ theme }) => theme.textAlt};
+          font-size: 0.8rem;
+        }
 
-      h2 {
-        text-align: center;
-        color: ${({ theme }) => theme.textAlt};
-        font-size: 2rem;
+        h2 {
+          text-align: start;
+          color: ${({ theme }) => theme.textAlt};
+          font-size: 1.5rem;
+        }
       }
     }
 
@@ -122,7 +127,7 @@ export const Card = styled.div`
 
         span {
           padding: 0.3rem;
-          font-size:0.8rem ;
+          font-size: 0.8rem;
           align-self: flex-end;
           color: ${({ theme }) => theme.text};
         }
@@ -141,7 +146,7 @@ export const Card = styled.div`
             width: auto;
 
             h1 {
-              font-size: 2rem;
+              font-size: 1.5rem;
             }
 
             p {
@@ -165,26 +170,107 @@ export const Card = styled.div`
         grid-column-end: 3;
       }
     }
+  }
 
-    .Card__github {
-      width: 100%;
+  .Card__github {
+    width: 100%;
 
-      .Card__github__info {
+    .Card__github__info {
+    }
+
+    .Card__github__local {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      div {
+        padding: 0.3rem;
+        gap: 0.5rem;
+
+        span {
+          text-align: start;
+          align-self: flex-end;
+          justify-self: flex-end;
+          font-size: 0.7rem;
+        }
       }
+    }
+  }
+  @media screen and (max-width: 568px) {
+    gap: 0;
+    padding: 0.5rem; 
+    justify-content: center;
 
-      .Card__github__local {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        div {
-          padding: 0.3rem;
-          gap: 0.5rem;
+    .Card__header {
+      width: 325px;
+      align-self: center;
+      justify-self: center;
+      grid-template-columns: 22% 1fr;
+      padding: 0.5rem;
+
+      .Card__header__info {
+        .Card__header_info_text {
+          flex-direction: column;
+          align-items: flex-start;
+
+          .info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+
+            h1 {
+              font-size: 1.2rem;
+            }
+
+            p {
+              font-size: 0.8rem;
+            }
+          }
           span {
-            text-align: start;
-            align-self: flex-end;
-            font-size: 0.8rem;
-            color: ${({ theme }) => theme.text};
+            font-size: 0.7rem;
           }
         }
+      }
+      .Card__header__avatar {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .Card__header__avatar_pic {
+          width: 64px;
+          height: 64px;
+        }
+      }
+      .Card__header_info_bio {
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        span{
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .Card__github{
+      padding: 0.5rem;
+      min-width: 0;
+      grid-template-rows: auto  1fr;
+      .Card__github__info{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        height: 100px;
+
+        div{
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          flex: 1;
+        }
+      }
+      .Card__github__local{
+        grid-template-columns: 1fr;
       }
     }
   }

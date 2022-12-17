@@ -4,12 +4,15 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 840px;
+  width: 730px;
   height: 659px;
 
   @media screen and (max-width: 768px){
     width: 573px;
     height: 100vh;
-    margin: 2rem 1rem;
+  }
+
+  @media screen and (max-width: 568px){
+    width: 327px;
   }
 `;

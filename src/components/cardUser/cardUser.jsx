@@ -35,12 +35,18 @@ export const CardUser = ({
       </div>
       <div className="Card__github">
         <div className="Card__github__info">
-          <span>Repos</span>
-          <span>Seguidores</span>
-          <span>Seguindo</span>
-          <h2>{repos}</h2>
-          <h2>{followes}</h2>
-          <h2>{following}</h2>
+          <div className="info__data">
+            <span>Repos</span>
+            <h2>{repos}</h2>
+          </div>
+          <div className="info__data">
+            <span>Seguidores</span>
+            <h2>{followes}</h2>
+          </div>
+          <div className="info__data">
+            <span>Seguindo</span>
+            <h2>{following}</h2>
+          </div>
         </div>
         <div className="Card__github__local">
           <div>
