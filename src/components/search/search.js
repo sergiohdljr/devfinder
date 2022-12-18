@@ -58,6 +58,7 @@ export const ResearchBar = styled.form`
       background-color: ${({ theme }) => theme.btnHover};
     }
   }
+  
   @media screen and (max-width: 768px) {
     input {
       ::placeholder {
@@ -69,6 +70,7 @@ export const ResearchBar = styled.form`
       width: 20%;
     }
   }
+
   @media screen and (max-width: 568px) {
     svg {
       margin-left: 0;
