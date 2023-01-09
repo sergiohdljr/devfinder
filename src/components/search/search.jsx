@@ -1,51 +1,66 @@
-import {useForm} from 'react-hook-form'
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useState, useRef } from "react";
 import { CardUser } from "../cardUser/cardUser.jsx";
 import { criacaoConta, disponivel } from "../../utils/utils";
 import { ResearchBar } from "./search";
 
 export const SearchBar = () => {
   const [gitHubUser, setGitHubUser] = useState();
-  const [errorUsuarioState, setErrorUsuarioState] = useState()
+  const [errorUsuarioState, setErrorUsuarioState] = useState();
   const [inputChange, setChange] = useState(false);
-  const {register,handleSubmit,reset,setError, formState={errors},clearErrors,setFocus} = useForm({
-    defaultValues:{
-      usuario:''
-    }
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    formState = { errors },
+    clearErrors,
+    setFocus,
+  } = useForm({
+    defaultValues: {
+      usuario: "",
+    },
   });
 
   const onSubmit = (data) => {
-    fetch(`https://api.github.com/users/${data.usuario}`)
-      .then((respos) =>{
-        if(respos.status === 200){
-         respos.json().then((githubUser) => setGitHubUser(githubUser));
-         setChange(true);
-         clearErrors("usuario")
-         setErrorUsuarioState("");
-      } else{
-        respos.json().then((error) => setErrorUsuarioState(error && 'Usuário não encontrado. Tente Novamente.'))
-      }       
-      })
-  }
+    fetch(`https://api.github.com/users/${data.usuario}`).then((respos) => {
+      if (respos.status === 200) {
+        respos.json().then((githubUser) => setGitHubUser(githubUser));
+        setChange(true);
+        clearErrors("usuario");
+        setErrorUsuarioState("");
+      } else {
+        respos
+          .json()
+          .then((error) =>
+            setErrorUsuarioState(
+              error && "Usuário não encontrado. Tente Novamente.")
+          );
+      }
+    });
+  };
 
-  const handleChangeUsuario = () =>{
-    setChange(true);
+  const handleChangeUsuario = (e) => {
+    if (e.target.value.length > 0) {
+      setChange(true);
+    } else {
+      setChange(false);
+    }
     setErrorUsuarioState("");
-  }
+  };
 
   const clearInput = () => {
-     reset();
-     setChange(false);
-     setErrorUsuarioState("");
-  }
+    reset();
+    setChange(false);
+    setErrorUsuarioState("");
+  };
 
-  const onError = () =>{
-    setError("usuario",{
-      type:"required",
-      message:"O campo não pode estar em branco"
-    })
-    setFocus("usuario")
-  }
+  const onError = () => {
+    setError("usuario", {
+      type: "required",
+      message: "O campo não pode estar em branco",
+    });
+  };
 
   return (
     <>
@@ -55,9 +70,7 @@ export const SearchBar = () => {
         </p>
       )}
       {errorUsuarioState && (
-        <p style={{ color: "red", fontSize: "14px" }}>
-          {errorUsuarioState}
-        </p>
+        <p style={{ color: "red", fontSize: "14px" }}>{errorUsuarioState}</p>
       )}
       <ResearchBar onSubmit={handleSubmit(onSubmit, onError)}>
         <svg height="24" width="25" xmlns="http://www.w3.org/2000/svg">
@@ -68,8 +81,9 @@ export const SearchBar = () => {
         </svg>
         <input
           type="text"
-          {...register("usuario",
-          { required: true, onChange:(handleChangeUsuario)})}
+          {...register('usuario', { required: true,
+            onChange: (event) => handleChangeUsuario(event),
+          })}
           placeholder="Busque o seu github user"
         />
         {inputChange && (
@@ -98,4 +112,5 @@ export const SearchBar = () => {
         />
       )}
     </>
-  );}
+  );
+};
