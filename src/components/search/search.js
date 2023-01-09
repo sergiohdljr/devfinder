@@ -11,6 +11,7 @@ export const ResearchBar = styled.form`
   padding: 0.3rem;
   box-shadow: ${({ theme }) => theme.shadow};
 
+ 
   svg {
     margin-left: 1rem;
     fill: ${({ theme }) => theme.text};
