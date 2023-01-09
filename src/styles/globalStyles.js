@@ -6,7 +6,7 @@ export default createGlobalStyle`
         margin: 0;
         padding:0;
         outline: 0;
-        transition: 0.1s;
+        transition: all 0.3s;
         font-family: 'Space Mono', monospace;
     } 
 
