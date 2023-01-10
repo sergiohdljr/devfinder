@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { CardUser } from "../cardUser/cardUser.jsx";
 import { criacaoConta, disponivel } from "../../utils/utils";
 import { ResearchBar } from "./search";
@@ -15,7 +15,6 @@ export const SearchBar = () => {
     setError,
     formState = { errors },
     clearErrors,
-    setFocus,
   } = useForm({
     defaultValues: {
       usuario: "",
@@ -34,7 +33,8 @@ export const SearchBar = () => {
           .json()
           .then((error) =>
             setErrorUsuarioState(
-              error && "Usuário não encontrado. Tente Novamente.")
+              error && "Usuário não encontrado. Tente Novamente."
+            )
           );
       }
     });
@@ -58,43 +58,46 @@ export const SearchBar = () => {
   const onError = () => {
     setError("usuario", {
       type: "required",
-      message: "O campo não pode estar em branco",
+      message: "O campo não pode estar em branco.",
     });
   };
 
   return (
     <>
-      {formState.errors && (
-        <p style={{ color: "red", fontSize: "14px" }}>
-          {formState.errors?.usuario?.message}
-        </p>
-      )}
-      {errorUsuarioState && (
-        <p style={{ color: "red", fontSize: "14px" }}>{errorUsuarioState}</p>
-      )}
-      <ResearchBar onSubmit={handleSubmit(onSubmit, onError)}>
-        <svg height="24" width="25" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M10.609 0c5.85 0 10.608 4.746 10.608 10.58 0 2.609-.952 5-2.527 6.847l5.112 5.087a.87.87 0 01-1.227 1.233l-5.118-5.093a10.58 10.58 0 01-6.848 2.505C4.759 21.16 0 16.413 0 10.58 0 4.747 4.76 0 10.609 0zm0 1.74c-4.891 0-8.87 3.965-8.87 8.84 0 4.874 3.979 8.84 8.87 8.84a8.855 8.855 0 006.213-2.537l.04-.047a.881.881 0 01.058-.053 8.786 8.786 0 002.558-6.203c0-4.875-3.979-8.84-8.87-8.84z"
-            fill=""
-          />
-        </svg>
-        <input
-          type="text"
-          {...register('usuario', { required: true,
-            onChange: (event) => handleChangeUsuario(event),
-          })}
-          placeholder="Busque o seu github user"
-        />
-        {inputChange && (
-          <button type="button" className="Clear_input" onClick={clearInput}>
-            X
-          </button>
+      <div>
+        {formState.errors && (
+          <p style={{ color: "red", fontSize: "14px" }}>
+            {formState.errors.usuario?.message}
+          </p>
         )}
-        <button type="submit" className="Submit_input">
-          Pesquisar
-        </button>
-      </ResearchBar>
+        {errorUsuarioState && (
+          <p style={{ color: "red", fontSize: "14px" }}>{errorUsuarioState}</p>
+        )}
+        <ResearchBar onSubmit={handleSubmit(onSubmit, onError)}>
+          <svg height="24" width="25" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.609 0c5.85 0 10.608 4.746 10.608 10.58 0 2.609-.952 5-2.527 6.847l5.112 5.087a.87.87 0 01-1.227 1.233l-5.118-5.093a10.58 10.58 0 01-6.848 2.505C4.759 21.16 0 16.413 0 10.58 0 4.747 4.76 0 10.609 0zm0 1.74c-4.891 0-8.87 3.965-8.87 8.84 0 4.874 3.979 8.84 8.87 8.84a8.855 8.855 0 006.213-2.537l.04-.047a.881.881 0 01.058-.053 8.786 8.786 0 002.558-6.203c0-4.875-3.979-8.84-8.87-8.84z"
+              fill=""
+            />
+          </svg>
+          <input
+            type="text"
+            {...register("usuario", {
+              required: true,
+              onChange: (event) => handleChangeUsuario(event),
+            })}
+            placeholder="Busque o seu github user"
+          />
+          {inputChange && (
+            <button type="button" className="Clear_input" onClick={clearInput}>
+              X
+            </button>
+          )}
+          <button type="submit" className="Submit_input">
+            Pesquisar
+          </button>
+        </ResearchBar>
+      </div>
       {gitHubUser && (
         <CardUser
           name={gitHubUser.name}

@@ -8,6 +8,7 @@ import ThemeContext from "./context/themeContext";
 import { useContext, useState } from "react";
 
 export default function App() {
+  
   const [theme, setTheme] = useState(lightTheme);
 
   return (
